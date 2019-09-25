@@ -30,32 +30,37 @@ Widget _buildContent(BuildContext context, InitialViewModel viewModel) {
       children: <Widget>[
         Expanded(
           child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("\"" + viewModel.phrase.quote + "\"",
-                      style: TextStyle(
-                          color: Colors.lightBlue[700],
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic),
-                      textAlign: TextAlign.center),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text("\"" + viewModel.phrase.quote + "\"",
+                          style: TextStyle(
+                              color: Colors.lightBlue[700],
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          textAlign: TextAlign.center),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 20),
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text("- " + viewModel.phrase.author,
+                          style: TextStyle(
+                              color: Colors.lightBlue[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.right),
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 20),
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("- " + viewModel.phrase.author,
-                      style: TextStyle(
-                          color: Colors.lightBlue[700],
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal),
-                      textAlign: TextAlign.right),
-                ),
-              ],
+              ),
             ),
           ),
         ),
