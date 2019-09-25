@@ -10,55 +10,48 @@ class AppState {
   final RandomPhrasesListState randomPhrasesListState;
   final LoadingState loadingState;
 
-  AppState({
-    @required this.favoritePhrasesListState,
-    @required this.initialPhraseState,
-    @required this.randomPhrasesListState,
-    @required this.loadingState
-  });
+  AppState(
+      {@required this.favoritePhrasesListState,
+      @required this.initialPhraseState,
+      @required this.randomPhrasesListState,
+      @required this.loadingState});
 
   AppState copyWith(
       {FavoritePhrasesListState favoritePhrasesListState,
       InitialPhraseState initialPhraseState,
       RandomPhrasesListState randomPhrasesListState,
-      LoadingState loadingState
-      }) {
+      LoadingState loadingState}) {
     return AppState(
         favoritePhrasesListState:
             favoritePhrasesListState ?? this.favoritePhrasesListState,
         initialPhraseState: initialPhraseState ?? this.initialPhraseState,
         randomPhrasesListState:
             randomPhrasesListState ?? this.randomPhrasesListState,
-        loadingState: loadingState ?? this.loadingState
-    );
+        loadingState: loadingState ?? this.loadingState);
   }
 
-  factory AppState.initial(){
+  factory AppState.initial() {
     return AppState(
-      randomPhrasesListState:  RandomPhrasesListState.initial(),
-      initialPhraseState: InitialPhraseState.initial(),
-      favoritePhrasesListState: FavoritePhrasesListState.initial(),
-      loadingState: LoadingState.initial()
-    );
+        randomPhrasesListState: RandomPhrasesListState.initial(),
+        initialPhraseState: InitialPhraseState.initial(),
+        favoritePhrasesListState: FavoritePhrasesListState.initial(),
+        loadingState: LoadingState.initial());
   }
 
   toJson() => {
-    "favorites" : favoritePhrasesListState.toJson(),
-    "initial_phrase": initialPhraseState.toJson(),
-    "initial_phrases_list": randomPhrasesListState.toJson()
-  };
+        "favoritePhrasesListState": favoritePhrasesListState.toJson(),
+      };
 
-  factory AppState.fromJson(dynamic json) {
-    if(json == null){
+  static AppState fromJson(Map<String, dynamic> json) {
+    if (json == null) {
       return AppState.initial();
     } else {
       return AppState(
-        favoritePhrasesListState: FavoritePhrasesListState.fromJson(json["favorites"]),
-        initialPhraseState: InitialPhraseState.fromJson(json["initial_phrase"]),
-        randomPhrasesListState: RandomPhrasesListState.fromJson(json["initial_phrases_list"]),
-        loadingState: LoadingState.initial()
-      );
+          favoritePhrasesListState: FavoritePhrasesListState.fromJson(
+              json["favoritePhrasesListState"]),
+          randomPhrasesListState: RandomPhrasesListState.initial(),
+          initialPhraseState: InitialPhraseState.initial(),
+          loadingState: LoadingState.initial());
     }
   }
-
 }

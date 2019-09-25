@@ -138,7 +138,7 @@ packages:
     source: hosted
     version: "0.3.0"
   redux_persist:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: redux_persist
       url: "https://pub.dartlang.org"

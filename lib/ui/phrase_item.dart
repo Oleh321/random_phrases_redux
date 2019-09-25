@@ -38,9 +38,11 @@ class PhraseItem extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 16),
             child: MaterialButton(
-              onPressed: () => viewModel.markAsFavorite(viewModel.phrase),
+              onPressed: () =>
+                  viewModel.favoriteButtonCallback(viewModel.phrase),
               child: Text(viewModel.favoriteButtonText,
-                  style: TextStyle(color: viewModel.favoriteButtonForeground, fontSize: 12)),
+                  style: TextStyle(
+                      color: viewModel.favoriteButtonForeground, fontSize: 12)),
               color: viewModel.favoriteButtonBackground,
             ),
           ),
@@ -55,12 +57,12 @@ class PhraseItemViewModel {
   String favoriteButtonText;
   Color favoriteButtonForeground;
   Color favoriteButtonBackground;
-  Function(PhraseModel) markAsFavorite;
+  Function(PhraseModel) favoriteButtonCallback;
 
   PhraseItemViewModel(
       {this.phrase,
       this.favoriteButtonText,
       this.favoriteButtonForeground,
       this.favoriteButtonBackground,
-      this.markAsFavorite});
+      this.favoriteButtonCallback});
 }

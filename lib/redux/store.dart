@@ -10,13 +10,16 @@ import 'package:redux_thunk/redux_thunk.dart';
 
 Future<Store<AppState>> createStore() async {
   final appPersistor = Persistor<AppState>(
-    storage: FlutterStorage(),
-    serializer: JsonSerializer<AppState>((json) => AppState.fromJson(json))
-  );
+      storage: FlutterStorage(),
+      serializer: JsonSerializer<AppState>((json) => AppState.fromJson(json)));
 
   final initialState = await appPersistor.load();
 
-  return Store(appReducer, initialState: initialState ?? AppState.initial(),
-    middleware: [thunkMiddleware, NavigationMiddleware()]
-  );
+  return Store(appReducer,
+      initialState: initialState ?? AppState.initial(),
+      middleware: [
+        thunkMiddleware,
+        NavigationMiddleware(),
+        appPersistor.createMiddleware()
+      ]);
 }

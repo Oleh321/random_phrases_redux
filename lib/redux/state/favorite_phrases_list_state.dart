@@ -5,11 +5,14 @@ class FavoritePhrasesListState {
 
   FavoritePhrasesListState({this.favoriteList});
 
-  static FavoritePhrasesListState fromJson(dynamic json) =>
-      json.map((el) => PhraseModel(el.quote, el.author));
+  static FavoritePhrasesListState fromJson(dynamic json) {
+    List<PhraseModel> list = [];
+    json["favoriteList"].forEach((el) => list.add(PhraseModel.fromJson(el)));
+    return FavoritePhrasesListState(favoriteList: list);
+  }
 
-  dynamic toJson() => {"favoriteList": favoriteList};
+  Map toJson() => {"favoriteList": favoriteList};
 
-  factory FavoritePhrasesListState.initial() =>
+  static FavoritePhrasesListState initial() =>
       FavoritePhrasesListState(favoriteList: []);
 }

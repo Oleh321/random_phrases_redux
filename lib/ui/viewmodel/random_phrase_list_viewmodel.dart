@@ -43,12 +43,12 @@ class RandomPhraseListViewModel {
     PhraseModel phraseModel = phrasesList[index];
     bool isFavorite = containElement(phraseModel);
     return PhraseItemViewModel(
-      phrase: phraseModel,
-      markAsFavorite: (phrase) =>
-          isFavorite ? removeFromFavorites(phrase) : addToFavorites(phrase),
-      favoriteButtonBackground: isFavorite? Colors.red : Colors.grey[100],
-      favoriteButtonForeground: isFavorite? Colors.white : Colors.black,
-      favoriteButtonText: isFavorite? "Remove from favorites" : "Add to favorites"
-    );
+        phrase: phraseModel,
+        favoriteButtonCallback: (phrase) =>
+            isFavorite ? removeFromFavorites(phrase) : addToFavorites(phrase),
+        favoriteButtonBackground: isFavorite ? Colors.red : Colors.grey[100],
+        favoriteButtonForeground: isFavorite ? Colors.white : Colors.black,
+        favoriteButtonText:
+            isFavorite ? "Remove from favorites" : "Add to favorites");
   }
 }
